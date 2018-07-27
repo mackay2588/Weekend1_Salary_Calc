@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--local styles-->
+    <link rel="stylesheet" href="styles/style.css"/>
+    <!--jQuery-->
+    <script type="text/javascript" src="scripts/jquery-3.3.1.js"></script>
+    <!--bootstrap-->
+    <script src="vendors/bootstrap-4.1.2-dist/js/bootstrap.min.js"></script>
+   <!-- <link rel="stylesheet" href="vendors/bootstrap-4.1.2-dist/css/bootstrap.css" />-->
+    <!--local js-->
+    <script type="text/javascript" src="scripts/index.js"></script>
+    <title>Salary Calculator</title>
+</head>
+<body>
+    <header>
+        <h1>Salary Calulator</h1>
+    </header>     
+    <main>
+        <div class="container formContainer">
+            <h3>Add Employee</h3>
+            <!--form for adding employees-->
+            <form>
+                <label for="#firstName">First Name:</label>
+                <input id="firstName"/>
+                <label for="#lastName"></label>
+                <input id="lastName"/>
+                <label for="#employeeID"></label>
+                <input id="employeeID"/>
+                <label for="employeeTitle"></label>
+                <input id="employeeTitle"/>
+                <label for="salary"></label>
+                <input id="salary"/>
+                <button>Submit</button>
+            </form>
+        </div>
+        <div class="container tableContainer">
+            <h3>Employees</h3>
+            <!--table of employees-->
+            <table>
+                <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Annual Salary</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+
+                </tbody>
+            </table>
+        </div>
+        <div class="container totalCostContainer">
+            <div class="totalCost">Total Monthly:</div>
+            <div id="totalCost" class="totalCost"></div>
+        </div>
+    </main>
+    <footer>
+        <div id="signature" class="signature">by Daniel MacKay</div>
+    </footer>
+</body>
+</html>
