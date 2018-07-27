@@ -6,6 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!--local styles-->
     <link rel="stylesheet" href="styles/style.css"/>
+    <!--font awesome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+        crossorigin="anonymous">
+
     <!--jQuery-->
     <script type="text/javascript" src="scripts/jquery-3.3.1.js"></script>
     <!--bootstrap-->
@@ -23,7 +27,7 @@
         <div class="container formContainer">
             <h3>Add Employee</h3>
             <!--form for adding employees-->
-            <form>
+            <form onsubmit="event.preventDefault()">
                 <label for="#firstName">First Name:</label>
                 <input id="firstName"/>
                 <label for="#lastName"></label>
@@ -34,7 +38,7 @@
                 <input id="employeeTitle"/>
                 <label for="salary"></label>
                 <input id="salary"/>
-                <button>Submit</button>
+                <button id="submit" class="submitBtn" >Submit</button>
             </form>
         </div>
         <div class="container tableContainer">
@@ -48,6 +52,7 @@
                         <th>ID</th>
                         <th>Title</th>
                         <th>Annual Salary</th>
+                        <th>Remove</th>
                     </tr>
                 </thead>
                 <tbody id="tableBody">
