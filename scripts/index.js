@@ -60,11 +60,34 @@ function addEmployee(){
 
 /* function to run through array of employees and calc monthly cost */
 function calcCost(employeeArr){
+    console.log('in calcCost');
+
+    //reset monthlyCost
+    monthlyCost = 0;
 
     //for loop to iterate over employees
-
-        //assign salary to a number
-        //make 
-
+    
+    for(let employee of employeeArr){
+        
+        let salary = parseFloat(employee.annualSalary);
+        
+        //calc monthlyCost
+        monthlyCost += salary;
+    }
+      
+    //turn monthlyCost into a string
+    monthlyCost = monthlyCost.toFixed(2);
+    //turn monthlyCost into an array
+    monthlyCost = monthlyCost.split('');
+    //iterate over monthlyCost string to add any needed commas
+    //if $1,000.00 or above    
+    if(monthlyCost.length > 6){
+       for(let i = monthlyCost.length - 6; i > 0; i -= 3){
+            monthlyCost.splice(i, 0, ',');
+       }
+    }
+    //turn back monthlyCost into a string
+    monthlyCost = monthlyCost.join('');
+    console.log(monthlyCost);
+    $('#totalCost').html('$' + monthlyCost);
 }
-
