@@ -14,7 +14,7 @@
     <script type="text/javascript" src="scripts/jquery-3.3.1.js"></script>
     <!--bootstrap-->
     <script src="vendors/bootstrap-4.1.2-dist/js/bootstrap.min.js"></script>
-   <!-- <link rel="stylesheet" href="vendors/bootstrap-4.1.2-dist/css/bootstrap.css" />-->
+   <link rel="stylesheet" href="vendors/bootstrap-4.1.2-dist/css/bootstrap.css" />
     <!--local js-->
     <script type="text/javascript" src="scripts/index.js"></script>
     <title>Salary Calculator</title>
@@ -24,27 +24,56 @@
         <h1>Salary Calulator</h1>
     </header>     
     <main>
-        <div class="container formContainer">
+        <div class="formContainer">
             <h3>Add Employee</h3>
             <!--form for adding employees-->
-            <form onsubmit="event.preventDefault()">
-                <label for="#firstName">First Name:</label>
-                <input id="firstName"/>
-                <label for="#lastName"></label>
-                <input id="lastName"/>
-                <label for="#employeeID"></label>
-                <input id="employeeID"/>
-                <label for="employeeTitle"></label>
-                <input id="employeeTitle"/>
-                <label for="salary"></label>
-                <input id="salary"/>
-                <button id="submit" class="submitBtn" >Submit</button>
+            <form class="needs-validation" onsubmit="event.preventDefault()" novalidate>
+                <div class="form-row">
+                    <div class="col-md-2 mb-3">
+                        <label for="#firstName">First Name</label>
+                        <input id="firstName" class="form-control" type="text" placeholder="John" required/>
+                        <div class="invalid-feedback">
+                            required
+                        </div>
+                    </div>
+                    <div class="col-md-2 mb-3">
+                        <label for="#lastName">Last Name</label>
+                        <input id="lastName" class="form-control" type="text" placeholder="Smith" required/>
+                        <div class="invalid-feedback">
+                            required
+                        </div>
+                    </div>
+                    <div class="col-md-2 mb-3">
+                        <label for="#employeeID">ID</label>
+                        <input id="employeeID" class="form-control" type="text"placeholder="1234" required/>
+                        <div class="invalid-feedback">
+                            required
+                        </div>
+                    </div>
+                    <div class="col-md-2 mb-3">
+                        <label for="#employeeTitle">Title</label>
+                        <input type="text" class="form-control" id="employeeTitle" placeholder="Developer" required/>
+                        <div class="invalid-feedback">
+                            required
+                        </div>
+                    </div>
+                    <div class="col-md-2 mb-3">
+                        <label for="#salary">Salary</label>
+                        <input type="text" class="form-control" id="salary" placeholder="50000.00" required/>
+                        <div class="invalid-feedback">
+                            required
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <button id="submit" class="btn btn-primary submitBtn">Submit</button>
+                </div>
             </form>
         </div>
-        <div class="container tableContainer">
+        <div class="tableContainer">
             <h3>Employees</h3>
             <!--table of employees-->
-            <table>
+            <table class="table-striped table-hover">
                 <thead>
                     <tr>
                         <th>First Name</th>
@@ -60,7 +89,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="container totalCostContainer">
+        <div class="totalCostContainer">
             <div class="totalCost">Total Monthly:</div>
             <div id="totalCost" class="totalCost"></div>
         </div>
