@@ -33,19 +33,20 @@ function checkEmployees(){
     console.log('in checkEmployees');
     //get employeeID from DOM
     let employeeID = $('#employeeID').val();
-
+    console.log('entered id: ', employeeID);
     //if employee array has employees
     if(employeeArr.length > 0){
         console.log('we have employees');
         //loop through employee array to check if employee already exists
         for (let i = 0; i <= employeeArr.length; i++) {
             console.log(employeeArr[i]);
-            //if matching employee found
-            if (employeeArr[i].employeeIDNum == employeeID) {
-                console.log(employeeArr[i]);
-                console.log('Employee already exists.')
+            if(i == employeeArr.length){
+                addEmployee();
+            }
+            else if(employeeArr[i].employeeIDNum == employeeID){
+                console.log('Employee already exists');
                 alert('Employee with that ID number already exists');
-                
+
                 //reset form
                 $('form')[0].reset();
 
@@ -53,10 +54,8 @@ function checkEmployees(){
                 setTimeout(function () {
                     $('form').removeClass('was-validated');
                 }, 1);
-            }
-            else if (i == employeeArr.length) {
-                console.log('no matching employees');
-                addEmployee();
+
+                return false;
             }
         }
     }
@@ -64,6 +63,7 @@ function checkEmployees(){
         addEmployee();
     }
    
+  
    
 }
 
@@ -184,6 +184,13 @@ function calcCost(employeeArr){
     //get monthlyCost
     let monthlyCost = totalCost / 12;
 
+    if(monthlyCost > 20000){
+        $('#monthlyCost').addClass('costWarning');
+    }
+    else{
+        $('#monthlyCost').removeClass('costWarning');
+    }
+
     //turn monthlyCost into a string
     monthlyCost = monthlyCost.toFixed(2);
 
@@ -206,7 +213,7 @@ function calcCost(employeeArr){
     console.log(monthlyCost);
     
     //append to DOM
-    $('#totalCost').html('$' + monthlyCost);
+    $('#monthlyCost').html('$' + monthlyCost);
 }
 
 

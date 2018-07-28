@@ -59,6 +59,9 @@ main{
     justify-content: center;
 }
 
+.costWarning{
+    background-color: red;
+}
 
 
 
