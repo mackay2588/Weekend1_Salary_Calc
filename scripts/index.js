@@ -28,12 +28,14 @@ let monthlyCost = 0;
 //array to hold employees
 let employeeArr = [];
 
-/* function to test adding employees */
+/* function to test adding employees and save in localStorage*/
 function createEmployeeRoster(){
-    if (typeof (localStorage) !== "undefined") {
+    console.log('in createEmployeeRoster');
+    
+    if (typeof localStorage !== "undefined") {
 
         //get array from localStorage
-        employeesArr = JSON.parse(localStorage.getItem('employeesArr'));
+        employeeArr = JSON.parse(localStorage.getItem('employeeArr'));
 
         //if array is empty build default array
         if(employeeArr == null){
@@ -43,10 +45,10 @@ function createEmployeeRoster(){
 
             console.log('Fill table with roster of employees')
 
-            addEmployee('Daniel', 'MacKay', 4066, Developer, 0);
+            addEmployee('Daniel', 'MacKay', 4066, 'Developer', 1);
             addEmployee('Travis', 'Smith', 5646, 'Sales', '$60,000.00');
-            addEmployee('Bruce', 'Wayne', 8471, 'CEO', 1000.00 );
-            addEmployee('Tony', 'Stark', 57421, 'Chief Engineer', '1,000,000,000');
+            addEmployee('Bruce', 'Wayne', 8471, 'CEO', '1,000,000,000.00' );
+            addEmployee('Tony', 'Stark', 57421, 'Chief Engineer', '1,000,000,001');
 
             //store employeeArr in localStorage
             localStorage.setItem('employeeArr', JSON.stringify(employeeArr));
@@ -56,17 +58,25 @@ function createEmployeeRoster(){
         else if(employeeArr != null && employeeArr.length == 0){
             console.log('Fill table with roster of employees')
 
-            addEmployee('Daniel', 'MacKay', 4066, 'Developer', 0);
+            addEmployee('Daniel', 'MacKay', 4066, 'Developer', 1);
             addEmployee('Travis', 'Smith', 5646, 'Sales', '$60,000.00');
-            addEmployee('Bruce', 'Wayne', 8471, 'CEO', 1000.00);
-            addEmployee('Tony', 'Stark', 57421, 'Chief Engineer', '1,000,000,000');
+            addEmployee('Bruce', 'Wayne', 8471, 'CEO', '1,000,000,000.00');
+            addEmployee('Tony', 'Stark', 57421, 'Chief Engineer', '1,000,000,001');
 
-            //store employeeArr in localStorage
-            localStorage.setItem('employeeArr', JSON.stringify(employeeArr));
+           
         }
 
         else{
-            employeeArr = employeeArr;
+            console.log('loop employeeArr');
+        
+            //get array from localStorage
+            employeeArr = JSON.parse(localStorage.getItem('employeeArr'));
+            console.log(employeeArr);
+
+            for(let employee of employeeArr){
+                prependEmployee(employee);
+            }
+
         }
 
     }
@@ -156,46 +166,17 @@ function addEmployee(firstName, lastName, employeeID, employeeTitle, annualSalar
         //add employee to array
         employeeArr.push(newEmployee);
 
-        //add decimal places to salary
-        salary = salary.toFixed(2);
+        //store employeeArr in localStorage
+        localStorage.setItem('employeeArr', JSON.stringify(employeeArr));
 
-        //turn salary into an array
-        salary = salary.split('');
-
-        //if $1,000 or above
-        if (salary.length > 6) {
-            //iterate over salary to add any needed commas
-            for (let i = salary.length - 6; i > 0; i -= 3) {
-                //add commas
-                salary.splice(i, 0, ',');
-            }
-        }
-
-        //turn salary back into a string
-        salary = salary.join('');
-
-
-        //append employee to table on DOM
-        //append delete button
-        $('#tableBody').append('<tr>' + '<td>' + firstName + '</td>' +
-            '<td>' + lastName + '</td>' +
-            '<td class="idNUM">' + employeeID + '</td>' +
-            '<td>' + employeeTitle + '</td>' +
-            '<td>' + salary + '</td>' +
-            '<td><button class="removeBtn" ><i class="fas fa-times"></i></button></td>' +
-            '</tr>');
-
-        
-
-        //call function to calc monthly cost
-        calcCost(employeeArr); 
-    }
-
-    else{
+        //call prependEmployee to add to DOM
+        prependEmployee(newEmployee);
+    }   
+    else {
         console.log('Please enter a valid salary.');
         alert('Please enter a valid salary');
     }
-   
+
     //reset form
     $('form')[0].reset();
 
@@ -204,8 +185,49 @@ function addEmployee(firstName, lastName, employeeID, employeeTitle, annualSalar
         $('form').removeClass('was-validated');
     }, 1);
 
-        
 }//end addEmployee
+
+function prependEmployee(newEmployee){
+    
+    //assign property values to var
+    let firstName = newEmployee.firstName;
+    let lastName = newEmployee.lastName;
+    let employeeID = newEmployee.employeeIDNum;
+    let employeeTitle = newEmployee.employeeTitle;
+    let salary = newEmployee.annualSalary;
+
+    //add decimal places to salary
+    salary = salary.toFixed(2);
+
+    //turn salary into an array
+    salary = salary.split('');
+
+    //if $1,000 or above
+    if (salary.length > 6) {
+        //iterate over salary to add any needed commas
+        for (let i = salary.length - 6; i > 0; i -= 3) {
+            //add commas
+            salary.splice(i, 0, ',');
+        }
+    }
+
+    //turn salary back into a string
+    salary = salary.join('');
+
+    //append employee to table on DOM
+    //append delete button
+    $('#tableBody').prepend('<tr>' + '<td>' + firstName + '</td>' +
+        '<td>' + lastName + '</td>' +
+        '<td class="idNUM">' + employeeID + '</td>' +
+        '<td>' + employeeTitle + '</td>' +
+        '<td>' + salary + '</td>' +
+        '<td><button class="removeBtn" ><i class="fas fa-times"></i></button></td>' +
+        '</tr>');
+
+    //call function to calc monthly cost
+    calcCost(employeeArr);     
+
+}//end prependEmployee
 
 /* function to remove employees and re-calc monthly cost */
 function removeEmployee(){
@@ -236,7 +258,9 @@ function removeEmployee(){
     //cal calcCost to recalc 
     calcCost(employeeArr);
 
-    
+    //store employeeArr in localStorage
+    localStorage.setItem('employeeArr', JSON.stringify(employeeArr));
+
 }//end removeEmployee()
 
 /* function to run through array of employees and calc monthly cost */

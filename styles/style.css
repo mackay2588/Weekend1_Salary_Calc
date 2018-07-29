@@ -51,32 +51,36 @@ input{
     background: transparent !important;
     color: var(--darkerYellow) !important;
     border: 2px solid var(--lighterYellow) !important;
-    box-shadow: 0 0 20px rgba(0,0,0,0.2), inset 0 0 10px rgba(0,0,0,0.2);
+    box-shadow: 0 0 20px rgba(0,0,0,0.2), inset 0 0 50px rgba(0,0,0,0.5);
 }
 
-input:focus{
-    
+input:focus{    
     box-shadow: 0 0 20px rgba(0,0,0,0.2), 
                 inset 0 0 25px  rgba(238, 232, 170, 0.8) !important;
 
 }
 
 ::-webkit-input-placeholder { 
-  color: var(--darkerYellow) !important;
+    font-family: 'Poiret One', cursive;  
+    color: var(--lighterYellow) !important;
 }
 ::-moz-placeholder { 
-  color: var(--darkerYellow) !important;
+    font-family: 'Poiret One', cursive;  
+    color: var(--lighterYellow) !important;
 }
 :-ms-input-placeholder { 
-  color: var(--darkerYellow) !important;
+    font-family: 'Poiret One', cursive;
+    color: var(--lighterYellow) !important;
 }
 :-moz-placeholder { 
-  color: var(--darkerYellow) !important;
+    font-family: 'Poiret One', cursive;
+    color: var(--lighterYellow) !important;
 }
 
 label{
     width: 100%;
     text-align: left;
+    font-family: 'Playfair Display', serif;
 }
 
 main{
@@ -88,13 +92,25 @@ main{
     flex-direction: column;
 }
 
+tbody{
+    font-family: 'Poiret One', cursive;
+}
+
+thead{
+    font-family: 'Playfair Display', serif;
+}
+
 tr{
     border-bottom: 2px solid var(--darkerYellow);
 }
 
+
+
 /* classes */
 
 .btn {
+    font-family: 'Playfair Display', serif;
+    font-weight: bolder;
     background: var(--gold) !important;
     color: var(--darkerYellow) !important;
     border: 2px solid var(--lighterYellow) !important;
@@ -165,13 +181,12 @@ tr{
 }
 
 .pageTitle{
-    font-family: 'Arvo', serif;
-    font-weight: bold;
+    font-family: 'Playfair Display', serif;
     font-size: 60px;
     background-color: rgb(218, 165, 32);
     color: var(--lighterYellow);
     text-shadow: -2px 2px 3px rgba(255,255,255,0.3);
-    -webkit-text-stroke: 2px var(--darkerYellow); /*rgb(237, 142, 0);*/
+    -webkit-text-stroke: 1px var(--darkerYellow); /*rgb(237, 142, 0);*/
     -webkit-background-clip: text;
     -moz-background-clip: text;
     background-clip: text;
@@ -191,12 +206,10 @@ tr{
 
 
 .sectionTitle{
-    font-family: 'Arvo', serif;
-    font-weight: bold;
+    font-family: 'Playfair Display', serif;
     background-color: rgb(218, 165, 32);
-    color: var(--lighterYellow);
+    color: var(--darkerYellow);
     text-shadow: -2px 2px 3px rgba(255,255,255,0.3);
-    -webkit-text-stroke: 2px var(--darkerYellow); /*rgb(237, 142, 0);*/
     -webkit-background-clip: text;
     -moz-background-clip: text;
     background-clip: text;
@@ -209,6 +222,7 @@ tr{
     display: flex;
     flex-direction: row;
     justify-content: center;
+    font-family: 'Poiret One', cursive;
 }
 .signature div{
     color: var(--mediumYellow);
