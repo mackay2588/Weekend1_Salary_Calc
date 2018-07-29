@@ -10,7 +10,6 @@ class Employee {
     }//end constructor
 }//end class
 
-
 $(document).ready(onReady);
 
 function onReady(){
@@ -28,7 +27,6 @@ let monthlyCost = 0;
 
 //array to hold employees
 let employeeArr = [];
-
 
 /* function to test adding employees */
 function createEmployeeRoster(){
@@ -110,7 +108,6 @@ function checkEmployees(){
         getValues();
     } 
 }//end checkEmployees
-
 
 /* Getting values from the DOM input fields, and adding the 
 employee to an array and DOM, are seperate functions so I can 
