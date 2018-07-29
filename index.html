@@ -9,7 +9,8 @@
     <!--font awesome-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
         crossorigin="anonymous">
-
+    <!-- DMlogo -->
+    <link rel="stylesheet" href="styles/icomoon/icon.css">
     <!--jQuery-->
     <script type="text/javascript" src="scripts/jquery-3.3.1.js"></script>
     <!--bootstrap-->
@@ -21,11 +22,11 @@
 </head>
 <body>
     <header>
-        <h1>Salary Calulator</h1>
+        <h1 class="pageTitle">Salary Calculator</h1>
     </header>     
     <main>
         <div class="formContainer">
-            <h3>Add Employee</h3>
+            <h3 class="sectionTitle" >Add Employee</h3>
             <!--form for adding employees-->
             <form class="needs-validation" onsubmit="event.preventDefault()" novalidate>
                 <div class="form-row">
@@ -71,31 +72,34 @@
             </form>
         </div>
         <div class="tableContainer">
-            <h3>Employees</h3>
+            <h3 class="sectionTitle" >Employees</h3>
             <!--table of employees-->
             <table class="table-striped table-hover">
-                <thead>
+                <thead class="tableHead">
                     <tr>
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th>ID</th>
                         <th>Title</th>
                         <th>Annual Salary</th>
-                        <th>Remove</th>
+                        <th></th>
                     </tr>
                 </thead>
-                <tbody id="tableBody">
+                <tbody id="tableBody" class="tableBody">
 
                 </tbody>
             </table>
         </div>
         <div class="totalCostContainer">
-            <div class="totalCost"><div>Total Monthly: </div><div id="monthlyCost" class="totalCost"></div></div>
+            <div class="totalCost"><label class="costLabel" for="monthlyCost">Total Monthly: </label><div id="monthlyCost" class="monthlyCost"></div></div>
             
         </div>
     </main>
     <footer>
-        <div id="signature" class="signature">by Daniel MacKay</div>
+        <div id="signature" class="signature">
+            <div class="signature">by Daniel MacKay</div>
+            <div class="icon-dmLogo5px heroLogo portfolioLink"></div>
+        </div>
     </footer>
 </body>
 </html>
