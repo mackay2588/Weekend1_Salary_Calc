@@ -55,12 +55,18 @@ main{
 
 /* classes */
 
+.costWarning{
+    background-color: red;
+}
+
 .form-row{
     justify-content: center;
 }
 
-.costWarning{
-    background-color: red;
+.tableContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 

@@ -18,6 +18,9 @@ function onReady(){
     $('#submit').click(checkEmployees);
 
     $('table').on('click', '.removeBtn', removeEmployee);
+
+    //test by adding employees
+    createEmployeeRoster();
 }
 
 //variable to hold monthly cost
@@ -26,7 +29,51 @@ let monthlyCost = 0;
 //array to hold employees
 let employeeArr = [];
 
-/* later add local storage of employees for testing */
+
+/* function to test adding employees */
+function createEmployeeRoster(){
+    if (typeof (localStorage) !== "undefined") {
+
+        //get array from localStorage
+        employeesArr = JSON.parse(localStorage.getItem('employeesArr'));
+
+        //if array is empty build default array
+        if(employeeArr == null){
+
+            //reset as empty
+            employeeArr = [];
+
+            console.log('Fill table with roster of employees')
+
+            addEmployee('Daniel', 'MacKay', 4066, Developer, 0);
+            addEmployee('Travis', 'Smith', 5646, 'Sales', '$60,000.00');
+            addEmployee('Bruce', 'Wayne', 8471, 'CEO', 1000.00 );
+            addEmployee('Tony', 'Stark', 57421, 'Chief Engineer', '1,000,000,000');
+
+            //store employeeArr in localStorage
+            localStorage.setItem('employeeArr', JSON.stringify(employeeArr));
+        }
+
+        //check if array is empty
+        else if(employeeArr != null && employeeArr.length == 0){
+            console.log('Fill table with roster of employees')
+
+            addEmployee('Daniel', 'MacKay', 4066, 'Developer', 0);
+            addEmployee('Travis', 'Smith', 5646, 'Sales', '$60,000.00');
+            addEmployee('Bruce', 'Wayne', 8471, 'CEO', 1000.00);
+            addEmployee('Tony', 'Stark', 57421, 'Chief Engineer', '1,000,000,000');
+
+            //store employeeArr in localStorage
+            localStorage.setItem('employeeArr', JSON.stringify(employeeArr));
+        }
+
+        else{
+            employeeArr = employeeArr;
+        }
+
+    }
+}//end createEmployeeRoster
+/*************************************/
 
 /* function to check if employee already exists */
 function checkEmployees(){
@@ -41,7 +88,7 @@ function checkEmployees(){
         for (let i = 0; i <= employeeArr.length; i++) {
             console.log(employeeArr[i]);
             if(i == employeeArr.length){
-                addEmployee();
+                getValues();
             }
             else if(employeeArr[i].employeeIDNum == employeeID){
                 console.log('Employee already exists');
@@ -60,16 +107,19 @@ function checkEmployees(){
         }
     }
     else{
-        addEmployee();
-    }
-   
-  
-   
-}
+        getValues();
+    } 
+}//end checkEmployees
 
-/* function to add employee to table/DOM/array */
-function addEmployee(){
-    console.log('in addEmployee');
+
+/* Getting values from the DOM input fields, and adding the 
+employee to an array and DOM, are seperate functions so I can 
+continue to test adding employees in the console instead of 
+filling out the form on the DOM. */     
+
+/* function to get values from DOM */
+function getValues(){
+    console.log('in getValues');
 
     //get values form input fields
     let firstName = $('#firstName').val();
@@ -81,14 +131,31 @@ function addEmployee(){
     //make sure values are input
     if(firstName.length > 0 && lastName.length > 0 && employeeID.length >= 4 
         && employeeTitle.length > 0 && salary.length > 0){
-        //remove any commas from salary
-        salary = salary.replace(',', '');
+            
+            console.log(firstName, lastName, employeeID, employeeTitle, salary);
+            addEmployee(firstName, lastName, employeeID, employeeTitle, salary);
 
-        //make sure salary is a number
-        salary = parseFloat(salary);
+    }
+}//end getValues
 
+//function to add employee to DOM and array
+function addEmployee(firstName, lastName, employeeID, employeeTitle, annualSalary){
+    console.log('in add employee');
+    
+    //change annualSalary to string
+    let salary = annualSalary.toString();
+
+    //remove any commas from salary
+    salary = salary.replace(/[,$]/g, '');
+    console.log(salary);
+
+    //change salary to a number
+    salary = parseFloat(salary);
+
+    if(typeof salary === 'number'){
         //create new Employee class instance
         let newEmployee = new Employee(firstName, lastName, employeeID, employeeTitle, salary);
+
         //add employee to array
         employeeArr.push(newEmployee);
 
@@ -110,6 +177,7 @@ function addEmployee(){
         //turn salary back into a string
         salary = salary.join('');
 
+
         //append employee to table on DOM
         //append delete button
         $('#tableBody').append('<tr>' + '<td>' + firstName + '</td>' +
@@ -120,18 +188,27 @@ function addEmployee(){
             '<td><button class="removeBtn" ><i class="fas fa-times"></i></button></td>' +
             '</tr>');
 
-        //reset form
-        $('form')[0].reset();
-
-        //remove invalid warnings
-        setTimeout(function () {
-            $('form').removeClass('was-validated');
-        }, 1);
+        
 
         //call function to calc monthly cost
-        calcCost(employeeArr);    
-    }    
-} 
+        calcCost(employeeArr); 
+    }
+
+    else{
+        console.log('Please enter a valid salary.');
+        alert('Please enter a valid salary');
+    }
+   
+    //reset form
+    $('form')[0].reset();
+
+    //remove invalid warnings
+    setTimeout(function () {
+        $('form').removeClass('was-validated');
+    }, 1);
+
+        
+}//end addEmployee
 
 /* function to remove employees and re-calc monthly cost */
 function removeEmployee(){
@@ -161,8 +238,9 @@ function removeEmployee(){
 
     //cal calcCost to recalc 
     calcCost(employeeArr);
-}
 
+    
+}//end removeEmployee()
 
 /* function to run through array of employees and calc monthly cost */
 function calcCost(employeeArr){
@@ -214,13 +292,11 @@ function calcCost(employeeArr){
     
     //append to DOM
     $('#monthlyCost').html('$' + monthlyCost);
-}
-
-
+}//end calcCost
 
 /******************************************************************/
 
-/* function to make sure all input's are filled in for addNewCar() */
+/* function to make sure all form input's are filled in */
 /*disable form submissions if there are invalid fields*/
 /* boostrap 4 function */
 (function () {
