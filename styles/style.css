@@ -10,26 +10,28 @@ html, body{
 
 body{
     min-height: 100vh;
-
     overflow-x: hidden;
     overflow-y: scroll;
-    display: block;
+    display: flex;
+    flex-direction: column;
     background: var(--gold);
     background-repeat: none;    
-
     --gold: linear-gradient(to top right, rgb(237, 142, 0), rgb(238, 232, 170),
                                 rgb(212, 175, 55), rgb(238, 232, 170));
-
     --darkerYellow: rgb(237, 142, 0);
     --lighterYellow: rgb(238, 232, 170);
     --mediumYellow: rgb(212, 175, 55);
     --red: #FE0600;
 }
 
+form{
+    min-height: 180px;
+}
+
 header{
     display: block;
     width: 100vw;
-    height: 20vh;
+    height: auto;
     padding-top: 2vh;
 }
 
@@ -74,7 +76,7 @@ input:focus{
 
 label{
     width: 100%;
-    text-align: center;
+    text-align: left;
 }
 
 main{
@@ -115,21 +117,26 @@ tr{
 }
 
 .form-row{
-    justify-content: center;
+    justify-content: center;      
 }
 
-@media only screen and (max-width: 767px){
-    .form-control{
-        position: relative !important;
-        left: 40vw !important;
-    }
+.form-control{
+    min-width: 120px !important;
 }
-
 
 .heroLogo{
     font-size: 60px;
     -webkit-text-stroke: 2px var(--mediumYellow);
     color: color: var(--mediumYellow);
+}
+
+.inputContainer{
+    height: 100px;
+    width: 150px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .invalid-feedback{
@@ -175,6 +182,13 @@ tr{
     border: none;
     color: var(--darkerYellow);
 }
+
+.rowContainer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
 
 .sectionTitle{
     font-family: 'Arvo', serif;
