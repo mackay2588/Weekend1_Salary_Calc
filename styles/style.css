@@ -48,33 +48,35 @@ h3{
 input{
     max-width: 20vw;
     background: transparent !important;
-    color: var(--darkerYellow) !important;
+    font-family: 'Poiret One', cursive !important; 
+    color: #000;
     border: 2px solid var(--lighterYellow) !important;
     box-shadow: 0 0 20px rgba(0,0,0,0.2), inset 0 0 50px rgba(0,0,0,0.5);
+    -webkit-text-stroke: 1px #000;
 }
 
 input:focus{    
     box-shadow: 0 0 20px rgba(0,0,0,0.2), 
-                inset 0 0 25px  rgba(238, 232, 170, 0.8) !important;
+                inset 0 0 25px  rgba(238, 232, 170, 0.8) !important;          
 
 }
 
 ::-webkit-input-placeholder { 
     font-family: 'Poiret One', cursive;  
     color: var(--lighterYellow) !important;
+    -webkit-text-stroke: 1px var(--lighterYellow);
 }
 ::-moz-placeholder { 
     font-family: 'Poiret One', cursive;  
     color: var(--lighterYellow) !important;
+     -moz-text-stroke: 1px var(--lighterYellow);
 }
 :-ms-input-placeholder { 
     font-family: 'Poiret One', cursive;
     color: var(--lighterYellow) !important;
+     -ms-text-stroke: 1px var(--lighterYellow);
 }
-:-moz-placeholder { 
-    font-family: 'Poiret One', cursive;
-    color: var(--lighterYellow) !important;
-}
+
 
 label{
     width: 100%;
@@ -93,6 +95,7 @@ main{
 
 tbody{
     font-family: 'Poiret One', cursive;
+    -webkit-text-stroke: 1px #000;
 }
 
 thead{
@@ -102,8 +105,6 @@ thead{
 tr{
     border-bottom: 2px solid var(--darkerYellow);
 }
-
-
 
 /* classes */
 
@@ -177,11 +178,14 @@ tr{
     flex-direction: row;
     justify-content: flex-end;
     padding: 10px 5vw 10px 5vw;
+    font-size: 20px;
 }
 
 .monthlyCost{
     height: 100%;
     padding: 5px;
+    font-family: 'Poiret One', cursive;
+    
 }
 
 .pageTitle{
@@ -200,6 +204,7 @@ tr{
     background: transparent;
     border: none;
     color: var(--darkerYellow);
+    -webkit-text-stroke: 0;
 }
 
 .rowContainer{
