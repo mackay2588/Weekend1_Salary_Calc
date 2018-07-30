@@ -30,6 +30,18 @@ let monthlyCost = 0;
 //array to hold employees
 let employeeArr = [];
 
+/* function to reset form */
+function resetForm(){
+    //reset form
+    $('form')[0].reset();
+
+    //remove invalid warnings
+    setTimeout(function () {
+        $('form').removeClass('was-validated');
+    }, 1);
+}//end resetForm
+/*************************/
+
 /* function to test adding employees and save in localStorage*/
 function createEmployeeRoster(){
     console.log('in createEmployeeRoster');
@@ -67,7 +79,7 @@ function createEmployeeRoster(){
         }
 
         else{
-            console.log('loop employeeArr');
+            //console.log('loop employeeArr');
         
             //get array from localStorage
             employeeArr = JSON.parse(localStorage.getItem('employeeArr'));
@@ -86,35 +98,35 @@ function checkEmployees(){
     console.log('in checkEmployees');
     //get employeeID from DOM
     let employeeID = $('#employeeID').val();
-    console.log('entered id: ', employeeID);
+    
+    //console.log('entered id: ', employeeID);
     //if employee array has employees
-    if(employeeArr.length > 0){
+    if(employeeArr.length > 0 && employeeID.length >= 4){
         console.log('we have employees');
         //loop through employee array to check if employee already exists
         for (let i = 0; i <= employeeArr.length; i++) {
-            console.log(employeeArr[i]);
+            //console.log(employeeArr[i]);
             if(i == employeeArr.length){
                 getValues();
             }
             else if(employeeArr[i].employeeIDNum == employeeID){
-                console.log('Employee already exists');
+                //console.log('Employee already exists');
                 alert('Employee with that ID number already exists');
 
-                //reset form
-                $('form')[0].reset();
-
-                //remove invalid warnings
-                setTimeout(function () {
-                    $('form').removeClass('was-validated');
-                }, 1);
+                resetForm();
 
                 return false;
             }
         }
     }
+    else if(employeeID.length < 4){
+      console.log('Please enter an ID of 4 or more digits.');
+      alert('Please enter an ID of 4 or more digits.');
+      resetForm();
+    } 
     else{
         getValues();
-    } 
+    }
 }//end checkEmployees
 /******************************/
 
@@ -134,26 +146,16 @@ function getValues(){
     let employeeTitle = $('#employeeTitle').val();
     let salary = $('#salary').val();
 
+    console.log(employeeID.length);
+
     //make sure values are input
     if(firstName.length > 0 && lastName.length > 0 && employeeID.length >= 4 
         && employeeTitle.length > 0 && salary.length > 0){
             
             console.log(firstName, lastName, employeeID, employeeTitle, salary);
             addEmployee(firstName, lastName, employeeID, employeeTitle, salary);
-
     }
-    else{
-        console.log('Please enter an ID of 4 or more numbers');
-        alert('Please enter an ID with 4 or more numbers');
-
-        //reset form
-        $('form')[0].reset();
-
-        //remove invalid warnings
-        setTimeout(function () {
-            $('form').removeClass('was-validated');
-        }, 1);
-    }
+  
 }//end getValues
 /***********************************/
 
