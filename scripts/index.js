@@ -142,6 +142,18 @@ function getValues(){
             addEmployee(firstName, lastName, employeeID, employeeTitle, salary);
 
     }
+    else{
+        console.log('Please enter an ID of 4 or more numbers');
+        alert('Please enter an ID with 4 or more numbers');
+
+        //reset form
+        $('form')[0].reset();
+
+        //remove invalid warnings
+        setTimeout(function () {
+            $('form').removeClass('was-validated');
+        }, 1);
+    }
 }//end getValues
 /***********************************/
 
@@ -275,7 +287,6 @@ function calcCost(employeeArr){
     totalCost = 0;
 
     //for loop to iterate over employees
-    
     for(let employee of employeeArr){
         
         let salary = parseFloat(employee.annualSalary);
