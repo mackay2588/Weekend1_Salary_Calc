@@ -133,7 +133,9 @@ tr{
 }
 
 .costWarning{
-    background-color: var(--red);
+    /*background:linear-gradient(rgba(255, 0, 24, 0.8), transparent,
+                                transparent, rgba(255, 0, 24, 0.8));*/
+    box-shadow: inset 0 0 50px rgba(255, 0, 24, 1);
     color: #fff;
 }
 
@@ -212,7 +214,6 @@ tr{
     flex-wrap: wrap;
     justify-content: center;
 }
-
 
 .sectionTitle{
     font-family: 'Playfair Display', serif;
