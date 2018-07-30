@@ -159,7 +159,8 @@ function addEmployee(firstName, lastName, employeeID, employeeTitle, annualSalar
     //change salary to a number
     salary = parseFloat(salary);
 
-    if(typeof salary === 'number'){
+    if(typeof salary === 'number' && salary >= 0){
+        console.log(salary);
         //create new Employee class instance
         let newEmployee = new Employee(firstName, lastName, employeeID, employeeTitle, salary);
 

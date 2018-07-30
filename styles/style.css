@@ -32,7 +32,6 @@ header{
     display: block;
     width: 100vw;
     height: auto;
-    padding-top: 2vh;
 }
 
 h1{
@@ -114,6 +113,11 @@ tr{
     background: var(--gold) !important;
     color: var(--darkerYellow) !important;
     border: 2px solid var(--lighterYellow) !important;
+}
+
+.btn:focus,.btn:active {
+   outline: none !important;
+   box-shadow: 0 0 10px 5px var(--lighterYellow) !important;
 }
 
 .btn:hover{
