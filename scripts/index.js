@@ -119,7 +119,7 @@ function checkEmployees(){
             }
         }
     }
-    else if(employeeID.length < 4){
+    else if(employeeID.length > 0 && employeeID.length < 4){
       console.log('Please enter an ID of 4 or more digits.');
       alert('Please enter an ID of 4 or more digits.');
       resetForm();
