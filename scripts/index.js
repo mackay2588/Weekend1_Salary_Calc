@@ -18,6 +18,7 @@ function onReady(){
     //submit button click event listener
     $('#submit').click(checkEmployees);
 
+    //remove button click event listener
     $('table').on('click', '.removeBtn', removeEmployee);
 
     //test by adding employees
@@ -232,6 +233,15 @@ function prependEmployee(newEmployee){
 
     //append employee to table on DOM
     //append delete button
+    /*let row = $('<tr></tr>'); //create row to add to DOM later
+    row.append('<td>' + firstName + '</td>');
+    row.append('<td>' + lastName + '</td>');
+    row.append('<td>' + employeeID + '</td>');
+    row.append('<td>' + employeeTitle + '</td>');
+    row.append('<td>' + salary + '</td>');
+    row.append('<td><button class="removeBtn" ><i class="fas fa-times"></i></button></td>');
+    */
+
     $('#tableBody').prepend('<tr>' + '<td>' + firstName + '</td>' +
         '<td>' + lastName + '</td>' +
         '<td class="idNUM">' + employeeID + '</td>' +
@@ -265,7 +275,7 @@ function removeEmployee(){
         //check for matching employee id number
         if(employee.employeeIDNum != idNUM){
             //copy all employees except matching employee    
-            tempArr.unshift(employee);
+            tempArr.push(employee);
         }
     }
 
