@@ -1,3 +1,5 @@
+/* jshint esversion: 6 */
+
 console.log('js');
 
 class Employee {
@@ -62,8 +64,6 @@ function createEmployeeRoster(){
             addEmployee('Travis', 'Smith', 5646, 'Sales', '$60,000.00');
             addEmployee('Bruce', 'Wayne', 8471, 'CEO', '1,000,000,000.00');
             addEmployee('Tony', 'Stark', 57421, 'Chief Engineer', '1,000,000,001');
-
-           
         }
 
         else{
@@ -76,9 +76,7 @@ function createEmployeeRoster(){
             for(let employee of employeeArr){
                 prependEmployee(employee);
             }
-
         }
-
     }
 }//end createEmployeeRoster
 /*************************************/
@@ -118,6 +116,7 @@ function checkEmployees(){
         getValues();
     } 
 }//end checkEmployees
+/******************************/
 
 /* Getting values from the DOM input fields, and adding the 
 employee to an array and DOM, are seperate functions so I can 
@@ -144,8 +143,9 @@ function getValues(){
 
     }
 }//end getValues
+/***********************************/
 
-//function to add employee to DOM and array
+//function to add employee to array
 function addEmployee(firstName, lastName, employeeID, employeeTitle, annualSalary){
     console.log('in add employee');
     
@@ -188,6 +188,7 @@ function addEmployee(firstName, lastName, employeeID, employeeTitle, annualSalar
 
 }//end addEmployee
 
+//function to add employee to DOM
 function prependEmployee(newEmployee){
     
     //assign property values to var
@@ -229,8 +230,9 @@ function prependEmployee(newEmployee){
     calcCost(employeeArr);     
 
 }//end prependEmployee
+/**********************************/
 
-/* function to remove employees and re-calc monthly cost */
+/* function to remove employees */
 function removeEmployee(){
     console.log('in removeEmployee');
 
@@ -263,8 +265,9 @@ function removeEmployee(){
     localStorage.setItem('employeeArr', JSON.stringify(employeeArr));
 
 }//end removeEmployee()
+/**********************************/
 
-/* function to run through array of employees and calc monthly cost */
+/* function to loop through array of employees and calc monthly cost */
 function calcCost(employeeArr){
     console.log('in calcCost');
 
@@ -315,7 +318,6 @@ function calcCost(employeeArr){
     //append to DOM
     $('#monthlyCost').html('$' + monthlyCost);
 }//end calcCost
-
 /******************************************************************/
 
 /* function to make sure all form input's are filled in */
